@@ -31,7 +31,7 @@ spec:
               start.sh jupyter lab --LabApp.token='password' --LabApp.ip='0.0.0.0' --LabApp.allow_root=True
           volumeMounts:
             - name: jupyterlab-data
-              mountPath: /home/jovyan
+              mountPath: /home/amukhsimov
           resources:
             requests:
               memory: 500Mi
