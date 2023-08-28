@@ -6,6 +6,7 @@ spec:
   groups:
   - system:authenticated
   request: ${BASE64_CSR}
+  signerName: kubernetes.io/kube-apiserver-client
   usages:
   - digital signature
   - key encipherment
