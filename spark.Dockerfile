@@ -41,6 +41,9 @@ RUN set -ex && \
     chgrp root /etc/passwd && chmod ug+rw /etc/passwd && \
     rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/*
 
+RUN apt install python3-pip
+RUN echo "export JAVA_HOME=/lib/jvm/default-java" > /etc/environment
+
 COPY jars /opt/spark/jars
 COPY bin /opt/spark/bin
 COPY sbin /opt/spark/sbin
