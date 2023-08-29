@@ -22,13 +22,18 @@ WORKDIR /
 # Reset to root to run installation tasks
 USER 0
 
-RUN mkdir ${SPARK_HOME}/python
+#RUN mkdir ${SPARK_HOME}/python
 RUN apt-get update && \
     # Add wget to download maven jars
-    apt install -y python3 python3-pip wget  && \
+    apt install -y python3.10 python3-pip wget  && \
     pip3 install --upgrade pip setuptools && \
     # Removed the .cache to save space
-    rm -r /root/.cache && rm -rf /var/cache/apt/*
+    rm -rf /root/.cache && rm -rf /var/cache/apt/* && \
+    rm -f /usr/bin/python3 /usr/bin/python && \
+    ln -s /usr/bin/python3.10 /usr/bin/python3 && \
+    ln -s /usr/bin/python3.10 /usr/bin/python
+
+RUN echo 'export PYSPARK_DRIVER_PYTHON=/usr/bin/python3.10' >> /etc/environment
 
 COPY python/pyspark ${SPARK_HOME}/python/pyspark
 COPY python/lib ${SPARK_HOME}/python/lib
