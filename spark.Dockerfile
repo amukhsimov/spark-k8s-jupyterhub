@@ -41,7 +41,9 @@ RUN set -ex && \
     chgrp root /etc/passwd && chmod ug+rw /etc/passwd && \
     rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/*
 
-RUN apt install default-jdk default-jre
+RUN apt update && apt install -y software-properties-common
+RUN add-apt-repository ppa:openjdk-r/ppa && apt-get update
+RUN apt install -y default-jdk default-jre
 RUN echo "export JAVA_HOME=/lib/jvm/default-java" > /etc/environment
 
 COPY jars /opt/spark/jars
