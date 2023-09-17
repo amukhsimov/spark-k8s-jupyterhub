@@ -27,6 +27,7 @@ RUN apt-get update && \
     # Add wget to download maven jars
     apt install -y python3.10 python3-pip wget  && \
     pip3 install --upgrade pip setuptools && \
+    pip3 install numpy pandas matplotlib pyspark==3.4.1 jupyterlab==4.0.6 && \
     # Removed the .cache to save space
     rm -rf /root/.cache && rm -rf /var/cache/apt/* && \
     rm -f /usr/bin/python3 /usr/bin/python && \
