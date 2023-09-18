@@ -26,6 +26,7 @@ USER 0
 #RUN mkdir ${SPARK_HOME}/python
 RUN apt-get update && \
     # Add wget to download maven jars \
+    apt install software-properties-common -y && \
     add-apt-repository -y ppa:deadsnakes/ppa && \
     apt install -y python3.10 python3-pip wget  && \
     pip3 install --upgrade pip setuptools && \
