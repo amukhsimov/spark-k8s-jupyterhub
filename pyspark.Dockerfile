@@ -14,7 +14,8 @@
 # limitations under the License.
 #
 
-ARG base_img=spark:latest
+#ARG base_img=spark:latest
+ARG base_img=bitnami/spark:3.4.1
 
 FROM $base_img
 WORKDIR /
@@ -39,14 +40,12 @@ RUN echo 'export PYSPARK_DRIVER_PYTHON=/usr/bin/python3.10' >> /etc/environment
 COPY python/pyspark ${SPARK_HOME}/python/pyspark
 COPY python/lib ${SPARK_HOME}/python/lib
 # Add S3A support
-RUN wget -O /opt/spark/jars/hadoop-aws-3.2.2.jar https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.2.2/hadoop-aws-3.2.2.jar
-RUN wget -O /opt/spark/jars/aws-java-sdk-bundle-1.12.270.jar https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.270/aws-java-sdk-bundle-1.12.270.jar
+RUN wget -O ${SPARK_HOME}/jars/hadoop-aws-3.2.2.jar https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.2.2/hadoop-aws-3.2.2.jar
+RUN wget -O ${SPARK_HOME}/jars/aws-java-sdk-bundle-1.12.270.jar https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.270/aws-java-sdk-bundle-1.12.270.jar
 # Add Postgres support
-RUN wget -O /opt/spark/jars/postgresql-42.2.20.jar https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.20/postgresql-42.2.20.jar
+RUN wget -O ${SPARK_HOME}/jars/postgresql-42.2.20.jar https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.20/postgresql-42.2.20.jar
 
-WORKDIR /opt/spark/work-dir
-ENTRYPOINT [ "/opt/entrypoint.sh" ]
-
-# Specify the User that the actual main process will run as
-ARG spark_uid=185
-USER ${spark_uid}
+WORKDIR /opt/bitnami/spark
+USER 1001
+ENTRYPOINT [ "/opt/bitnami/scripts/spark/entrypoint.sh" ]
+CMD [ "/opt/bitnami/scripts/spark/run.sh" ]
