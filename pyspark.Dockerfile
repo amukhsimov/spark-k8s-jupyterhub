@@ -25,7 +25,8 @@ USER 0
 
 #RUN mkdir ${SPARK_HOME}/python
 RUN apt-get update && \
-    # Add wget to download maven jars
+    # Add wget to download maven jars \
+    add-apt-repository -y ppa:deadsnakes/ppa && \
     apt install -y python3.10 python3-pip wget  && \
     pip3 install --upgrade pip setuptools && \
     pip3 install numpy pandas matplotlib pyspark==3.4.1 jupyterlab==4.0.6 && \
