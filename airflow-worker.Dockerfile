@@ -54,7 +54,7 @@ RUN wget https://dlcdn.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VER
     rmdir $SPARK_HOME/spark-${SPARK_VERSION}-bin-hadoop3
 
 RUN apt update && \
-    apt install -y default-jdk default-jre \
+    apt install -y default-jdk default-jre
 ENV JAVA_HOME=/lib/jvm/default-java
 
 # Add S3A support
