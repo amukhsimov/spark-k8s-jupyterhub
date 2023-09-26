@@ -31,8 +31,7 @@ RUN apt-get update && \
     apt install -y python3.9 && \
     apt install -y wget
 
-RUN add-apt-repository -y ppa:deadsnakes/ppa && \
-    apt install -y python3.9 python3-pip wget  && \
+RUN apt install -y python3.9 python3-pip wget  && \
     pip3 install --upgrade pip setuptools && \
     pip3 install numpy pandas matplotlib pyspark==3.4.1 jupyterlab==4.0.6 && \
     # Removed the .cache to save space
