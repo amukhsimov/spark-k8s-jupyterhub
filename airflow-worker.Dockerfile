@@ -51,7 +51,11 @@ RUN wget https://dlcdn.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VER
     chmod 0777 $SPARK_HOME && \
     tar -xzf /home/user/spark-${SPARK_VERSION}-bin-hadoop3.tgz -C $SPARK_HOME && \
     mv $SPARK_HOME/spark-${SPARK_VERSION}-bin-hadoop3/* $SPARK_HOME && \
-    rmdir $SPARK_HOME/spark-${SPARK_VERSION}-bin-hadoop3 \
+    rmdir $SPARK_HOME/spark-${SPARK_VERSION}-bin-hadoop3
+
+RUN apt update && \
+    apt install -y default-jdk default-jre \
+ENV JAVA_HOME=/lib/jvm/default-java
 
 # Add S3A support
 RUN rm ${SPARK_HOME}/jars/hadoop-aws-*
