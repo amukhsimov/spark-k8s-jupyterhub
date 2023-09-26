@@ -49,7 +49,7 @@ ENV SPARK_HOME=/opt/spark
 RUN wget https://dlcdn.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop3.tgz && \
     mkdir $SPARK_HOME && \
     chmod 0777 $SPARK_HOME && \
-    tar -xzf /home/user/spark-${SPARK_VERSION}-bin-hadoop3.tgz -C $SPARK_HOME && \
+    tar -xzf ./spark-${SPARK_VERSION}-bin-hadoop3.tgz -C $SPARK_HOME && \
     mv $SPARK_HOME/spark-${SPARK_VERSION}-bin-hadoop3/* $SPARK_HOME && \
     rmdir $SPARK_HOME/spark-${SPARK_VERSION}-bin-hadoop3
 
