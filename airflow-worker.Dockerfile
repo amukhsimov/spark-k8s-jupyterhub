@@ -58,8 +58,8 @@ RUN apt update && \
 ENV JAVA_HOME=/lib/jvm/default-java
 
 # Add S3A support
-RUN rm ${SPARK_HOME}/jars/hadoop-aws-*
-RUN rm ${SPARK_HOME}/jars/aws-java-sdk-bundle-*
+RUN rm -f ${SPARK_HOME}/jars/hadoop-aws-*
+RUN rm -f ${SPARK_HOME}/jars/aws-java-sdk-bundle-*
 RUN wget -O ${SPARK_HOME}/jars/hadoop-aws-3.2.2.jar https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.2.2/hadoop-aws-3.2.2.jar
 RUN wget -O ${SPARK_HOME}/jars/aws-java-sdk-bundle-1.12.270.jar https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.270/aws-java-sdk-bundle-1.12.270.jar
 # Add Postgres support
