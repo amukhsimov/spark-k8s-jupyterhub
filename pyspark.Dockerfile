@@ -29,7 +29,6 @@ RUN adduser --uid 1001 spark
 RUN apt-get update && \
     # Add wget to download maven jars \
     apt install software-properties-common -y && \
-    apt install -y python3.9 && \
     apt install -y wget
 
 #RUN add-apt-repository -y ppa:deadsnakes/ppa
