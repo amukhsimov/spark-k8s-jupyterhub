@@ -41,7 +41,7 @@ RUN apt-get update && \
 #    ln -s /usr/bin/python3.9 /usr/bin/python3 && \
 #    ln -s /usr/bin/python3.9 /usr/bin/python
 
-RUN echo 'export PYSPARK_DRIVER_PYTHON=/usr/bin/python3.9' >> /etc/environment
+RUN echo 'PYSPARK_DRIVER_PYTHON=/usr/bin/python3.9' >> /etc/environment
 
 COPY python/pyspark ${SPARK_HOME}/python/pyspark
 COPY python/lib ${SPARK_HOME}/python/lib
