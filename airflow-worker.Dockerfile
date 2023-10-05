@@ -28,19 +28,11 @@ RUN adduser --uid 1001 airflow-worker
 RUN apt-get update && \
     # Add wget to download maven jars \
     apt install software-properties-common -y && \
-    apt install -y python3.9 && \
-    apt install -y wget
+    apt install -y nano && \
+    apt install -y wget && \
+    apt install -y sudo
 
-RUN apt install -y python3.9 python3-pip wget  && \
-    pip3 install --upgrade pip setuptools && \
-    pip3 install numpy pandas matplotlib pyspark==3.4.1 jupyterlab==4.0.6 && \
-    # Removed the .cache to save space
-    rm -rf /root/.cache && rm -rf /var/cache/apt/* && \
-    rm -f /usr/bin/python3 /usr/bin/python && \
-    ln -s /usr/bin/python3.9 /usr/bin/python3 && \
-    ln -s /usr/bin/python3.9 /usr/bin/python
-
-RUN echo 'export PYSPARK_DRIVER_PYTHON=/usr/bin/python3.9' >> /etc/environment
+#RUN echo 'export PYSPARK_DRIVER_PYTHON=/usr/bin/python3.9' >> /etc/environment
 
 # download and install apache spark
 ENV SPARK_VERSION=3.4.1
@@ -68,6 +60,9 @@ RUN wget -O ${SPARK_HOME}/jars/bcprov-jdk15on-1.69.jar https://repo1.maven.org/m
 RUN wget -O ${SPARK_HOME}/jars/bcpkix-jdk15on-1.69.jar https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-jdk15on/1.69/bcpkix-jdk15on-1.69.jar
 # Add Oracle JDBC support
 RUN wget -O ${SPARK_HOME}/jars/ojdbc8-23.2.0.0.jar https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/23.2.0.0/ojdbc8-23.2.0.0.jar
+
+RUN usermod -aG sudo airflow-worker
+RUN chown -R airflow-worker ${SPARK_HOME}
 
 #WORKDIR /opt/bitnami/spark
 USER 1001
