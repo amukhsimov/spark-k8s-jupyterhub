@@ -66,5 +66,5 @@ RUN chown -R airflow /opt
 
 #WORKDIR /opt/bitnami/spark
 USER 1001
-ENTRYPOINT [ "/opt/bitnami/scripts/airflow-worker/entrypoint.sh" ]
-CMD [ "/opt/bitnami/scripts/airflow-worker/run.sh" ]
+ENTRYPOINT [ "/opt/bitnami/scripts/airflow/entrypoint.sh" ]
+CMD [ "/opt/bitnami/scripts/airflow/run.sh" ]
