@@ -22,8 +22,6 @@ FROM $base_img
 # Reset to root to run installation tasks
 USER 0
 
-RUN adduser --uid 1001 airflow-worker
-
 #RUN mkdir ${SPARK_HOME}/python
 RUN apt-get update && \
     # Add wget to download maven jars \
@@ -61,6 +59,7 @@ RUN wget -O ${SPARK_HOME}/jars/bcpkix-jdk15on-1.69.jar https://repo1.maven.org/m
 # Add Oracle JDBC support
 RUN wget -O ${SPARK_HOME}/jars/ojdbc8-23.2.0.0.jar https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/23.2.0.0/ojdbc8-23.2.0.0.jar
 
+RUN adduser --uid 1001 airflow-worker
 RUN usermod -aG sudo airflow-worker
 RUN passwd -d airflow-worker
 RUN chown -R airflow-worker /opt
