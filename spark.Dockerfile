@@ -44,7 +44,7 @@ RUN set -ex && \
 RUN apt update && apt install -y software-properties-common
 RUN add-apt-repository ppa:openjdk-r/ppa && apt-get update
 RUN apt install -y default-jdk default-jre
-ENV JAVA_HOME=/lib/jvm/default-java
+ENV JAVA_HOME=/usr/lib/jvm/default-java
 # RUN echo "export JAVA_HOME=/lib/jvm/default-java" >> /etc/profile
 # RUN echo "JAVA_HOME=/lib/jvm/default-java" > /etc/environment
 
