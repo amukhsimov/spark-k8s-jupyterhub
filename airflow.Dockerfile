@@ -26,9 +26,7 @@ USER 0
 RUN apt-get update && \
     # Add wget to download maven jars \
     apt install software-properties-common -y && \
-    apt install -y nano && \
-    apt install -y wget && \
-    apt install -y sudo
+    apt install -y nano wget sudo git
 
 #RUN echo 'export PYSPARK_DRIVER_PYTHON=/usr/bin/python3.9' >> /etc/environment
 
