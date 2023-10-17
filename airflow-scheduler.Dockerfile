@@ -70,7 +70,7 @@ RUN passwd -d airflow-scheduler
 RUN chown -R airflow-scheduler /opt
 
 RUN . /opt/bitnami/airflow/venv/bin/activate && \
-    /opt/bitnami/python/bin/pip3 install pyspark==3.4.1 apache-airflow-providers-apache-spark \
+    /opt/bitnami/airflow/venv/bin/pip3 install pyspark==3.4.1 apache-airflow-providers-apache-spark \
         apache-airflow-providers-oracle
 
 #WORKDIR /opt/bitnami/spark
