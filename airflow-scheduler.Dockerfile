@@ -56,11 +56,22 @@ RUN wget -O ${SPARK_HOME}/jars/bcprov-jdk15on-1.69.jar https://repo1.maven.org/m
 RUN wget -O ${SPARK_HOME}/jars/bcpkix-jdk15on-1.69.jar https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-jdk15on/1.69/bcpkix-jdk15on-1.69.jar
 # Add Oracle JDBC support
 RUN wget -O ${SPARK_HOME}/jars/ojdbc8-23.2.0.0.jar https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/23.2.0.0/ojdbc8-23.2.0.0.jar
+# Add Delta Lake support
+RUN wget -O ${SPARK_HOME}/jars/delta-core_2.12-2.4.0.jar https://repo1.maven.org/maven2/io/delta/delta-core_2.12/2.4.0/delta-core_2.12-2.4.0.jar
+RUN wget -O ${SPARK_HOME}/jars/delta-storage-2.4.0.jar https://repo1.maven.org/maven2/io/delta/delta-storage/2.4.0/delta-storage-2.4.0.jar
+# Add Apache Hudi support
+RUN wget -O ${SPARK_HOME}/jars/hudi-spark3.4-bundle_2.12-0.14.0.jar https://repo1.maven.org/maven2/org/apache/hudi/hudi-spark3.4-bundle_2.12/0.14.0/hudi-spark3.4-bundle_2.12-0.14.0.jar
+# Add GreenPlum (6) support
+RUN wget -O ${SPARK_HOME}/jars/greenplum-connector-apache-spark-scala_2.12-2.2.0.jar --no-check-certificate 'https://docs.google.com/uc?export=download&id=1BSZjsj-DH0Fpqe_sfSWIV_pG908INolS'
 
 RUN adduser --uid 1001 airflow-scheduler
 RUN usermod -aG sudo airflow-scheduler
 RUN passwd -d airflow-scheduler
 RUN chown -R airflow-scheduler /opt
+
+RUN . /opt/bitnami/airflow/venv/bin/activate && \
+    /opt/bitnami/python/bin/pip3 install pyspark==3.4.1 apache-airflow-providers-apache-spark \
+        apache-airflow-providers-oracle
 
 #WORKDIR /opt/bitnami/spark
 USER 1001
