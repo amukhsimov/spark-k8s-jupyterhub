@@ -62,8 +62,9 @@ RUN wget -O ${SPARK_HOME}/jars/delta-core_2.12-2.4.0.jar https://repo1.maven.org
 RUN wget -O ${SPARK_HOME}/jars/delta-storage-2.4.0.jar https://repo1.maven.org/maven2/io/delta/delta-storage/2.4.0/delta-storage-2.4.0.jar
 # Add Apache Hudi support
 RUN wget -O ${SPARK_HOME}/jars/hudi-spark3.4-bundle_2.12-0.14.0.jar https://repo1.maven.org/maven2/org/apache/hudi/hudi-spark3.4-bundle_2.12/0.14.0/hudi-spark3.4-bundle_2.12-0.14.0.jar
-# Add GreenPlum (6) support
-RUN wget -O ${SPARK_HOME}/jars/greenplum-connector-apache-spark-scala_2.12-2.2.0.jar --no-check-certificate 'https://docs.google.com/uc?export=download&id=1BSZjsj-DH0Fpqe_sfSWIV_pG908INolS'
+# Add GreenPlum JDBC support
+#RUN wget -O ${SPARK_HOME}/jars/greenplum-connector-apache-spark-scala_2.12-2.2.0.jar --no-check-certificate 'https://docs.google.com/uc?export=download&id=1BSZjsj-DH0Fpqe_sfSWIV_pG908INolS'
+RUN wget -O ${SPARK_HOME}/jars/PROGRESS_DATADIRECT_JDBC_DRIVER_PIVOTAL_GREENPLUM_6.0.0+109.jar --no-check-certificate 'https://docs.google.com/uc?export=download&id=1rQgDiV0c_gCk39ipjBwnhSbd8GCNfw5Q'
 
 WORKDIR /opt/bitnami/spark
 USER 1001
