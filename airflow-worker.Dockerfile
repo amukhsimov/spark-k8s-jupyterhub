@@ -15,7 +15,7 @@
 #
 
 #ARG base_img=spark:latest
-ARG base_img=bitnami/airflow-worker:2.7.1-debian-11-r14
+ARG base_img=bitnami/airflow-worker:2.8.3-debian-12-r0
 
 FROM $base_img
 
