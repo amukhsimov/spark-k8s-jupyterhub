@@ -31,7 +31,7 @@ RUN apt-get update && \
 #RUN echo 'export PYSPARK_DRIVER_PYTHON=/usr/bin/python3.9' >> /etc/environment
 
 # download and install apache spark
-ENV SPARK_VERSION=3.4.1
+ENV SPARK_VERSION=3.4.2
 ENV SPARK_HOME=/opt/spark
 RUN wget https://dlcdn.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop3.tgz && \
     mkdir $SPARK_HOME && \
