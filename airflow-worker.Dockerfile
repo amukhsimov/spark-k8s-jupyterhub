@@ -65,14 +65,14 @@ RUN wget -O ${SPARK_HOME}/jars/hudi-spark3.4-bundle_2.12-0.14.0.jar https://repo
 #RUN wget -O ${SPARK_HOME}/jars/greenplum-connector-apache-spark-scala_2.12-2.2.0.jar --no-check-certificate 'https://docs.google.com/uc?export=download&id=1BSZjsj-DH0Fpqe_sfSWIV_pG908INolS'
 RUN wget -O ${SPARK_HOME}/jars/PROGRESS_DATADIRECT_JDBC_DRIVER_PIVOTAL_GREENPLUM_6.0.0+109.jar --no-check-certificate 'https://docs.google.com/uc?export=download&id=1rQgDiV0c_gCk39ipjBwnhSbd8GCNfw5Q'
 
-RUN adduser --uid 1001 airflow-worker
+RUN adduser --uid 1001 --home /home/airflow-worker airflow-worker
 RUN usermod -aG sudo airflow-worker
 RUN passwd -d airflow-worker
 RUN chown -R airflow-worker /opt
 
 RUN . /opt/bitnami/airflow/venv/bin/activate && \
-    /opt/bitnami/airflow/venv/bin/pip3 install pyspark==3.4.1 apache-airflow-providers-apache-spark \
-        apache-airflow-providers-oracle
+    /opt/bitnami/airflow/venv/bin/pip3 install pyspark==3.4.2 apache-airflow-providers-apache-spark \
+        apache-airflow-providers-oracle minio==7.1.17 openpyxl cx_Oracle pandas numpy python-dotenv
 
 #WORKDIR /opt/bitnami/spark
 USER 1001
