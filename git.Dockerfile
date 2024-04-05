@@ -22,5 +22,3 @@ FROM $base_img
 # Reset to root to run installation tasks
 USER 0
 RUN git config --global http.sslVerify false
-USER 1001
-RUN git config --global http.sslVerify false
