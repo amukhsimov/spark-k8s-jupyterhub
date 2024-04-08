@@ -22,3 +22,4 @@ FROM $base_img
 # Reset to root to run installation tasks
 USER 0
 RUN git config --global http.sslVerify false
+ADD apexbank.corp.crt /usr/local/share/ca-certificates/apexbank.corp.crt
