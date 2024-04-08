@@ -23,3 +23,4 @@ FROM $base_img
 USER 0
 RUN git config --global http.sslVerify false
 ADD apexbank.corp.crt /usr/local/share/ca-certificates/apexbank.corp.crt
+RUN update-ca-certificates
