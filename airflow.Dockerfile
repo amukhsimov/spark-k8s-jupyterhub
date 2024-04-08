@@ -74,7 +74,13 @@ ENV HOME="/opt/bitnami/airflow"
 
 RUN . /opt/bitnami/airflow/venv/bin/activate && \
     /opt/bitnami/airflow/venv/bin/pip3 install pyspark==3.4.2 apache-airflow-providers-apache-spark \
-        apache-airflow-providers-oracle minio==7.1.17 openpyxl oracledb pandas numpy python-dotenv
+        apache-airflow-providers-oracle minio==7.1.17 openpyxl oracledb pandas numpy python-dotenv \
+
+# RUN apt update && apt install -y git
+RUN git config --global http.sslVerify false
+ADD apexbank.corp.crt /usr/local/share/ca-certificates/apexbank.corp.crt
+RUN chmod 644 /usr/local/share/ca-certificates/apexbank.corp.crt
+RUN update-ca-certificates
 
 #WORKDIR /opt/bitnami/spark
 USER 1001
